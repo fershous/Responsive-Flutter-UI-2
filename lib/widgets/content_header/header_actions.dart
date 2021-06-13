@@ -45,7 +45,7 @@ class HeaderActions extends StatelessWidget {
               Icon(Icons.settings, color: Colors.white, size: 20,),
               SizedBox(width: 10,),
               Text(
-                'Setting',
+                'Settings',
                 style: Theme.of(context)
                             .textTheme
                             .subtitle1!
