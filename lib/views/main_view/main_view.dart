@@ -29,18 +29,6 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
 
     final Size size = MediaQuery.of(context).size;
-    double _width;
-    flex && !Responsive.isMobile(context) ? _width = size.width * 0.80 : _width = size.width;
-
-    drawer() =>
-      setState(() {
-        if(!Responsive.isMobile(context)) {
-          flex = !flex;
-          flex ? _width = size.width * 0.80 : _width = size.width;
-        } else {
-          _scaffoldKey.currentState!.openDrawer();
-        }
-      });
 
     return Scaffold(
       key: _scaffoldKey,
@@ -68,18 +56,13 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
           children: [
             if(!Responsive.isMobile(context))
             NavBar(size: size, flex: flex),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeIn,
-              height: size.height,
-              width: _width,
-              color: Colors.white,
+            Flexible(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Toolbar(width: _width, size: size, drawer: drawer,),
-                    MainContent(width: _width, size: size, widget: widget),
+                    Toolbar(size: size),
+                    MainContent(size: size, widget: widget),
                   ],
                 ),
               )
